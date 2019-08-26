@@ -13,13 +13,15 @@
 <body>
     <div class="container-fluid">
         <div class="row text-center">
-            <form onsubmit="app.controllers.listController.addList(event)">
-                <div class="form-group">
-                    <label for="name">TaskMaster</label>
-                    <input type="text" class="form-control" name="name" placeholder="Enter Task" required>
-                </div>
-                <button class="btn btn-primary" type="submit">Submit</button>
-            </form>
+            <div class="col">
+                <form onsubmit="app.controllers.listController.addList(event)">
+                    <div class="form-group">
+                        <label for="name" class="display-3">TaskMaster</label>
+                        <input type="text" class="form-control" name="name" placeholder="Enter Task" required>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </form>
+            </div>
         </div>
         <div id="list" class="row">
 
