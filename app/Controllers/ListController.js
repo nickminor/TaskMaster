@@ -1,22 +1,46 @@
 import ListService from "../Services/ListService.js";
 
-//Private
 let _listService = new ListService()
 
-//TODO Don't forget to render to the screen after every data change.
-function _drawLists() {
 
+function _draw() {
+    let template = ``
+    let lists = _listService.List
+    lists.forEach((list, index) => {
+        template += list.getTemplate(index)
+    })
+    document.querySelector('#list').innerHTML = template
 }
 
 
-//Public
 export default class ListController {
     constructor() {
-        //NOTE: When the app first starts we want to pull any potential data out of memory
-        _listService.getLists();
-        //NOTE: After updating the store, we can automatically call to draw the lists.
-        _drawLists();
+        console.log("Hello from ListController")
+        _draw()
     }
 
-    //TODO: Your app will need the ability to create, and delete both lists and listItems
+    addList(event) {
+        event.preventDefault()
+        let form = event.target
+        let newList = {
+            name: form.name.value
+        }
+        _listService.addList(newList)
+        _draw()
+    }
+    addTask(event, listIndex) {
+        event.preventDefault()
+        let form = event.target
+        let newTask = form.task.value
+        _listService.addTask(newTask, listIndex)
+        _draw()
+    }
+    deleteList(index) {
+        _listService.deleteList(index)
+        _draw()
+    }
+    deleteTask(listIndex, taskIndex) {
+        _listService.deleteTask(listIndex, taskIndex)
+        _draw()
+    }
 }
