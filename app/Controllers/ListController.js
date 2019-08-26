@@ -36,11 +36,18 @@ export default class ListController {
         _draw()
     }
     deleteList(index) {
-        _listService.deleteList(index)
-        _draw()
+        if (window.confirm("Are you sure?")) {
+            _listService.deleteList(index)
+            _draw()
+        }
+        else { return }
+
     }
     deleteTask(listIndex, taskIndex) {
-        _listService.deleteTask(listIndex, taskIndex)
-        _draw()
+        if (window.confirm("Are you sure?")) {
+            _listService.deleteTask(listIndex, taskIndex)
+            _draw()
+        }
+        else { return }
     }
 }
